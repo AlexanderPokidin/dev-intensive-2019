@@ -18,12 +18,12 @@ data class User(
 
     constructor(id: String) : this(id, "John", "Doe")
 
-    init {
-        println(
-            "It`s Alive!!!\n" +
-                    "${if (lastName === "Doe") "His name is $firstName $lastName" else "And his name is $firstName $lastName"}\n"
-        )
-    }
+//    init {
+//        println(
+//            "It`s Alive!!!\n" +
+//                    "${if (lastName === "Doe") "His name is $firstName $lastName" else "And his name is $firstName $lastName"}\n"
+//        )
+//    }
 
     companion object Factory {
         private var lastId: Int = -1
