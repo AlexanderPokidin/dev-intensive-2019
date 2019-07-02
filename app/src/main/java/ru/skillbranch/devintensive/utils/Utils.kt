@@ -28,7 +28,25 @@ object Utils {
     }
 
     fun toInitials(firstName: String?, lastName: String?): String? {
-        TODO() // Создание инициалов
+        val firstInitial: String? =
+            (if (firstName.isNullOrBlank()) {
+                null
+            } else {
+                firstName[0].toString().toUpperCase()
+            })
+
+        val lastInitial: String? =
+            (if (lastName.isNullOrBlank()) {
+                null
+            } else {
+                lastName[0].toString().toUpperCase()
+            })
+
+        return when {
+            firstInitial.isNullOrBlank() -> null
+            lastInitial.isNullOrBlank() -> firstInitial
+            else -> firstInitial.plus(lastInitial)
+        }
     }
 
 }
