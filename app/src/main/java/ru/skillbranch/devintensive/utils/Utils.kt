@@ -4,7 +4,7 @@ object Utils {
     fun parseFullName(fullName: String?): Pair<String?, String?> {
         val parts: List<String>? = fullName?.split(" ")
 
-        return if (fullName.isNullOrEmpty() || fullName.equals(" ")) {
+        return if (fullName.isNullOrEmpty() || fullName == " ") {
             val firsName = null
             val lastName = null
             firsName to lastName
@@ -23,7 +23,7 @@ object Utils {
     }
 
     fun transliteration(payload: String, divider: String = " "): String {
-        var result: String = ""
+        var result = ""
         val translationMap: Map<String, String> = hashMapOf(
             "а" to "a",
             "б" to "b",
@@ -128,5 +128,4 @@ object Utils {
             else -> firstInitial.plus(lastInitial)
         }
     }
-
 }
