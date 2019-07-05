@@ -28,8 +28,8 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String {
-    val currentDate = Date().time
-    val unixDate = date.time
+    val currentDate = date.time
+    val unixDate = this.time
     val exactTime = abs(currentDate - unixDate)
     val result: String
 
