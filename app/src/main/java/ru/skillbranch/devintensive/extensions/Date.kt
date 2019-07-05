@@ -27,6 +27,21 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String {
+    val stringPattern: String = ""
+    val before = "через"
+    val after = "назад"
+    val time: String
+    val currentDate = Date()
+
+    var result: String = ""
+
+    if (date > currentDate) {
+
+    }
+
+
+
+
     TODO() //реализовать возвращение правильного времени с момента последнего посещения
 }
 
