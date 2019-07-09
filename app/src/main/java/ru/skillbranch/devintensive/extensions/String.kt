@@ -27,7 +27,12 @@ fun String.stripHtml(): String {
     var resString: String
 
     val regexHtml = Regex("<[a-zA-Z0-9 =/\"]*>")
+    val regexEsc1 = Regex("&[a-zA-Z0-9#]+;")
+    val regexEsc2 = Regex("<[a-zA-Z0-9=\" .]+>")
+
     resString = tmpString.replace(regexHtml, "")
+        .replace(regexEsc1, "")
+        .replace(regexEsc2, "")
 
     val regexSpace = Regex("[ ]+")
     resString = resString.replace(regexSpace, " ")
