@@ -21,3 +21,16 @@ fun String.truncate(numOfChars: Int = 16): String {
     }
     return resString
 }
+
+fun String.stripHtml(): String {
+    val tmpString = this
+    var resString: String
+
+    val regexHtml = Regex("<[a-zA-Z0-9 =/\"]*>")
+    resString = tmpString.replace(regexHtml, "")
+
+    val regexSpace = Regex("[ ]+")
+    resString = resString.replace(regexSpace, " ")
+
+    return resString
+}
