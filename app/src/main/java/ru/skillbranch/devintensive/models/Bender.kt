@@ -1,6 +1,7 @@
 package ru.skillbranch.devintensive.models
 
 class Bender(var status: Status = Status.NORMAL, var question: Question = Question.NAME) {
+    private var i = 0
 
     fun askQuestion(): String = when (question) {
         Question.NAME -> Question.NAME.question
@@ -12,12 +13,21 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     }
 
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
+
         return if (question.answers.contains(answer)) {
             question = question.nextQuestion()
-            "Отлично - это правильный ответ!\n${question.question}" to status.color
+            "Отлично - ты справился\n${question.question}" to status.color
         } else {
-            status = status.nextStatus()
-            "Это неправильный ответ!\n${question.question}" to status.color
+            if (i == 0 || i == 1) {
+                i++
+                status = status.nextStatus()
+                "Это неправильный ответ\n${question.question}" to status.color
+            } else {
+                i = 0
+                question = Question.NAME
+                status = Status.NORMAL
+                "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+            }
         }
     }
 
