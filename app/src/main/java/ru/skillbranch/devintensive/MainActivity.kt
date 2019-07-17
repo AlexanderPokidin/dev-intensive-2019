@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -45,9 +46,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
         messageEt.setOnEditorActionListener { v, actionId, event ->
-            hideKeyboard()
-            sendMessageToBender()
-            true
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard()
+                sendMessageToBender()
+                return@setOnEditorActionListener true
+            }
+            false
+
         }
 
         // The full syntax for using this method
