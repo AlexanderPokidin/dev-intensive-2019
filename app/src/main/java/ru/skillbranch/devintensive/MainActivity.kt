@@ -5,7 +5,6 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -44,15 +43,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
 
-
         messageEt.setOnEditorActionListener { v, actionId, event ->
-//            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                hideKeyboard()
-                sendMessageToBender()
-                true
-//            }
-//            false
-
+            hideKeyboard()
+            sendMessageToBender()
+            true
         }
 
         // The full syntax for using this method
@@ -105,7 +99,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.iv_send) {
-//            hideKeyboard()
+            hideKeyboard()
             sendMessageToBender()
         }
     }
