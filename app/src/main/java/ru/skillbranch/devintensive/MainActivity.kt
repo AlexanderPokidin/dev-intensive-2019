@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
         messageEt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+//            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyboard()
                 sendMessageToBender()
-                return@setOnEditorActionListener true
-            }
-            false
+                true
+//            }
+//            false
 
         }
 
