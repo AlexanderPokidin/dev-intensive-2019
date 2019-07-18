@@ -38,13 +38,13 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     private fun validationAnswer(answer: String): String {
         return when (question) {
             Question.NAME ->
-                if (answer[0].isUpperCase()) {
+                if (answer.isNotEmpty() && answer[0].isUpperCase()) {
                     ""
                 } else {
                     "Имя должно начинаться с заглавной буквы"
                 }
             Question.PROFESSION ->
-                if (answer[0].isLowerCase()) {
+                if (answer.isNotEmpty() && answer[0].isLowerCase()) {
                     ""
                 } else {
                     "Профессия должна начинаться со строчной буквы"
