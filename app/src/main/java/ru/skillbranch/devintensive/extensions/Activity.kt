@@ -15,16 +15,16 @@ fun Activity.hideKeyboard() {
     }
 }
 
-fun Activity.isKeyboardOpen(): Boolean{
-    val rootView = findViewById<View>(android.R.id.content)
-    val visibleBounds = Rect()
-    rootView.getWindowVisibleDisplayFrame(visibleBounds)
-    val heightDiff = rootView.height - visibleBounds.height()
-    val marginOfError = this.convertDpToPx(50F).roundToLong()
-
-    return heightDiff > marginOfError
-}
-
-fun Activity.isKeyboardClosed(): Boolean {
-    return this.isKeyboardOpen().not()
-}
+//fun Activity.isKeyboardOpen(): Boolean{
+//    val rootView = findViewById<View>(android.R.id.content)
+//    val visibleBounds = Rect()
+//    rootView.getWindowVisibleDisplayFrame(visibleBounds)
+//    val heightDiff = rootView.height - visibleBounds.height()
+//    val marginOfError = this.convertDpToPx(50F).roundToLong()
+//
+//    return heightDiff > marginOfError
+//}
+//
+//fun Activity.isKeyboardClosed(): Boolean {
+//    return this.isKeyboardOpen().not()
+//}
