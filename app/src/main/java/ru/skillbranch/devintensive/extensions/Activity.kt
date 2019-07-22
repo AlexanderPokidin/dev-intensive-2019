@@ -3,9 +3,9 @@ package ru.skillbranch.devintensive.extensions
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import kotlin.math.roundToLong
 
 fun Activity.hideKeyboard() {
     val inputMethodManager: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -16,7 +16,7 @@ fun Activity.hideKeyboard() {
 }
 
 fun Activity.isKeyboardOpen(): Boolean {
-    val rootView = findViewById<View>(R.id.content)
+    val rootView = findViewById<View>(android.R.id.content)
     val visibleBorders = Rect()
     rootView.getWindowVisibleDisplayFrame(visibleBorders)
     val heightDifference = rootView.height - visibleBorders.height()
