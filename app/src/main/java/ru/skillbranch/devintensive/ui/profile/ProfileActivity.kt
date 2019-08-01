@@ -35,11 +35,6 @@ class ProfileActivity : AppCompatActivity() {
         Log.d("ProfileActivity", "onCreate")
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putBoolean(IS_EDIT_MODE, false)
-    }
-
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
@@ -128,5 +123,10 @@ class ProfileActivity : AppCompatActivity() {
         ).apply {
             viewModel.saveProfileData(this)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putBoolean(IS_EDIT_MODE, false)
     }
 }

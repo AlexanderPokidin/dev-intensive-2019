@@ -12,7 +12,7 @@ data class Profile(
     val rank: String = "Junior Android Developer"
 
     fun toMap(): Map<String, Any> = mapOf(
-        "nickname" to nickName,
+        "nickName" to nickName,
         "rank" to rank,
         "firstName" to firstName,
         "lastName" to lastName,
