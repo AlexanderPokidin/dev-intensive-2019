@@ -37,7 +37,7 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putBoolean(IS_EDIT_MODE, false) ?: false
+        outState?.putBoolean(IS_EDIT_MODE, false)
     }
 
     private fun initViewModel() {
@@ -71,7 +71,7 @@ class ProfileActivity : AppCompatActivity() {
             "respect" to tv_respect
         )
 
-        isEditMode = savedInstanceState?.getBoolean(IS_EDIT_MODE, false) ?: false
+        isEditMode = savedInstanceState?.getBoolean(IS_EDIT_MODE) ?: false
         showCurrentMode(isEditMode)
 
         btn_edit.setOnClickListener {
