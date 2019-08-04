@@ -14,9 +14,4 @@
 
     </style>
 
-    <!-- Splash theme. For a cold start up screen. -->
-    <style name="AppTheme.SplashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
-
 </resources>
