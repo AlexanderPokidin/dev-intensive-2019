@@ -1,7 +1,6 @@
 package ru.skillbranch.devintensive.utils
 
 import android.content.Context
-import kotlin.math.roundToInt
 
 object Utils {
     fun parseFullName(fullName: String?): Pair<String?, String?> {
@@ -132,11 +131,11 @@ object Utils {
         }
     }
 
-    fun dpToPx(dp: Float, context: Context): Int {
-        return (dp * context.resources.displayMetrics.density).roundToInt()
+    fun dpToPx(dp: Float, context: Context): Float {
+        return (dp * context.resources.displayMetrics.density)
     }
 
-    fun pxToDp(px: Int, context: Context): Float {
+    fun pxToDp(px: Float, context: Context): Float {
         return (px / context.resources.displayMetrics.density)
     }
 
