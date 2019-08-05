@@ -7,15 +7,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.ui.custom.InitialsDrawable
 import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -28,6 +31,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var viewModel: ProfileViewModel
     var isEditMode = false
     lateinit var viewFields: Map<String, TextView>
+    private lateinit var initialsDrawable: InitialsDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -55,6 +59,7 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
+        updateAvatar()
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -69,7 +74,13 @@ class ProfileActivity : AppCompatActivity() {
             "respect" to tv_respect
         )
 
-        isEditMode = savedInstanceState?.getBoolean(IS_EDIT_MODE) ?: false
+        initialsDrawable = InitialsDrawable().apply {
+            val typedValue = TypedValue()
+            theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
+            backgroundColor = ContextCompat.getColor(this@ProfileActivity, typedValue.resourceId)
+        }
+
+        isEditMode = savedInstanceState?.getBoolean(IS_EDIT_MODE, false) ?: false
         showCurrentMode(isEditMode)
 
         btn_edit.setOnClickListener {
@@ -78,6 +89,7 @@ class ProfileActivity : AppCompatActivity() {
                 if (!Utils.validationGithubUrl(et_repository.text.toString())) {
                     et_repository.text.clear()
                 }
+                updateAvatar()
                 saveProfileInfo()
             }
             isEditMode = !isEditMode
@@ -153,10 +165,21 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putBoolean(IS_EDIT_MODE, isEditMode) ?: false
+    private fun updateAvatar() {
+        val firstLetter = et_first_name.text.toString()
+        val lastLetter = et_last_name.text.toString()
+        val initials = Utils.toInitials(firstLetter, lastLetter)
+
+        if (initials.isNullOrBlank()) {
+            iv_avatar.setImageResource(R.drawable.avatar_default)
+        } else {
+            initialsDrawable.initials = initials
+            iv_avatar.setImageDrawable(initialsDrawable)
+        }
     }
 
-
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putBoolean(IS_EDIT_MODE, isEditMode)
+    }
 }
