@@ -1,5 +1,8 @@
 package ru.skillbranch.devintensive.utils
 
+import android.content.Context
+import kotlin.math.roundToInt
+
 object Utils {
     fun parseFullName(fullName: String?): Pair<String?, String?> {
         val parts: List<String>? = fullName?.split(" ")
@@ -128,4 +131,36 @@ object Utils {
             else -> firstInitial.plus(lastInitial)
         }
     }
+
+    fun dpToPx(dp: Float, context: Context): Int {
+        return (dp * context.resources.displayMetrics.density).roundToInt()
+    }
+
+    fun pxToDp(px: Int, context: Context): Float {
+        return (px / context.resources.displayMetrics.density)
+    }
+
+    fun validationGithubUrl(url: CharSequence?): Boolean {
+        val repositoryExceptions = listOf(
+            "enterprise",
+            "features",
+            "topics",
+            "collections",
+            "trending",
+            "events",
+            "marketplace",
+            "pricing",
+            "nonprofit",
+            "customer-stories",
+            "security",
+            "login",
+            "join"
+        )
+
+        val repository = "(https://)?(www.)?github.com/[^/]+".toRegex()
+        return url != null && (url.isEmpty() || (repository.matches(url))
+                && repositoryExceptions.all { !url.contains("github.com/$it") })
+    }
+
+
 }
