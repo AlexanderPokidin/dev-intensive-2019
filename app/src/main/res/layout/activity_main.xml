@@ -25,6 +25,7 @@
             android:id="@+id/rv_chat_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"/>
+            android:layout_marginTop="?attr/actionBarSize"
+            tools:listitem="@layout/item_chat_single"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
